@@ -1,0 +1,61 @@
+<!-- <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.tcs.bean.TblUser" table="TBL_USER">
+        <id name="userId" type="int">
+            <column name="USER_ID" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="tblRole" class="com.tcs.bean.TblRole" fetch="select">
+            <column name="ROLE_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tblSecQuestion" class="com.tcs.bean.TblSecQuestion" fetch="select">
+            <column name="SEC_QUESTION_ID" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="com.tcs.bean.TblLocation" fetch="select">
+            <column name="LOCATION_ID" />
+        </many-to-one>
+        <property name="barclaysEmpId" type="string">
+            <column name="BARCLAYS_EMP_ID" length="45" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="45" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="45" />
+        </property>
+        <property name="secAnswer" type="string">
+            <column name="SEC_ANSWER" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="45" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="PHONE_NUMBER" length="45" />
+        </property>
+        <property name="status" type="java.lang.Character">
+            <column name="STATUS" length="1" />
+        </property>
+        <property name="createdBy" type="java.lang.Integer">
+            <column name="CREATED_BY" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CREATED_DATE" length="19" />
+        </property>
+        <property name="updatedBy" type="java.lang.Integer">
+            <column name="UPDATED_BY" />
+        </property>
+        <property name="updatedDate" type="timestamp">
+            <column name="UPDATED_DATE" length="19" />
+        </property>
+        <set name="tblUserProjectSows" table="TBL_USER_PROJECT_SOW" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USER_ID" />
+            </key>
+            <one-to-many class="com.tcs.bean.TblUserProjectSow" />
+        </set>
+    </class>
+</hibernate-mapping> -->

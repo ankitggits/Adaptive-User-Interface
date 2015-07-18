@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+ 	<!-- <bean id="authenticationAction" class="com.tcs.authentication.action.AuthenticationAction" scope="prototype">
+		<property name="authenticationBo" ref="authenticationBo" />	
+	</bean>
+ 
+	<bean id="authenticationBo" class="com.tcs.authentication.bo.AuthenticationBoImpl" scope="prototype">
+		<property name="authenticationDao" ref="authenticationDao" />
+	</bean>
+ 
+   	<bean id="authenticationDao" class="com.tcs.authentication.dao.AuthenticationDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="logoutAction" class="com.tcs.authentication.action.LogoutAction" scope="prototype">
+	</bean> -->
+ 
+</beans>

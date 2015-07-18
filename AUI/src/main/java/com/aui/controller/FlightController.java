@@ -1,0 +1,40 @@
+package com.aui.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.aui.pojo.Flight;
+import com.aui.pojo.FlightLogo;
+import com.aui.pojo.ResponseData;
+import com.aui.pojo.SearchFlight;
+import com.aui.service.FlightService;
+
+@Controller
+@RequestMapping(value="/flight")
+public class FlightController {
+
+	@Autowired
+	FlightService flightService;
+	
+	@RequestMapping(value="/populate", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+	public @ResponseBody ResponseData saveFlights(@RequestBody List<Flight> flights){
+		return flightService.saveFlights(flights);
+	}
+	
+	@RequestMapping(value="/populate/logo", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+	public @ResponseBody ResponseData saveFlightLogo(@RequestBody List<FlightLogo> logo){
+		return flightService.saveFlightLogo(logo);
+	}
+	
+	@RequestMapping(value="/search", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+	public @ResponseBody ResponseData searchFlights(@RequestBody SearchFlight searchflight){
+		return flightService.searchFlights(searchflight);
+	}
+	
+}

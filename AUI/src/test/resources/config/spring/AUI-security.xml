@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security
+                         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	 <http auto-config='false' use-expressions="true" entry-point-ref="loginUrlAuthenticationEntryPoint">
+		<intercept-url pattern="/security/test" access="hasRole('ROLE_USER')" />
+		<custom-filter position="FORM_LOGIN_FILTER" ref="customUsernamePasswordAuthenticationFilter" />
+		<logout logout-success-url="/security/logoutSuccess" invalidate-session="true" delete-cookies="true"/>
+	</http> 
+	
+	<beans:bean id="userDetailsService" class="com.aui.security.UserDetailsServiceImpl"></beans:bean>
+	
+	<beans:bean id="customAuthenticationProvider" class="com.aui.security.CustomAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="userDetailsService"></beans:property>
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+
+	 <beans:bean id="customUsernamePasswordAuthenticationFilter" class="com.aui.filter.CustomUsernamePasswordAuthenticationFilter">
+		
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+		<beans:property name="authenticationSuccessHandler" ref="successHandler"></beans:property>
+		<beans:property name="authenticationFailureHandler" ref="failureHandler"></beans:property>
+		
+	</beans:bean>
+	
+	<beans:bean id="successHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler">
+ 	 	<beans:property name="defaultTargetUrl" value="/security/loginSuccess"></beans:property>
+	</beans:bean>
+		
+	<beans:bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/security/loginFailed"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+  		<beans:property name="loginFormUrl" value="/j_spring_security_check"></beans:property>
+	</beans:bean> 
+
+</beans:beans>
