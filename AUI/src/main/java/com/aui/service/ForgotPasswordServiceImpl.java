@@ -149,6 +149,37 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 				responseData.setMessage("Password Changes Successfully!!!");
 			}
 			else{
+				responseData.setMessage("Login Required");
+				responseData.setStatus(Constants.STATUS_FAILURE);
+			}
+		}
+		catch(Exception exception){
+			responseData.setErrorMessage(exception.getMessage());
+			responseData.setMessage(Constants.STATUS_ERROR);
+		}
+		return responseData;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public ResponseData updatePassword(Authentication authentication) {
+		ResponseData responseData = null;
+		try{
+			responseData = context.getBean(ResponseData.class);
+			TBLAuthentication tblAuthentication = authenticationDao.getAuthenticationByUserName(authentication.getUsername());
+			if(null != tblAuthentication){
+				if(tblAuthentication.getPassword().equals(authentication.getOldPassword())){
+					tblAuthentication.setPassword(authentication.getPassword());
+					authenticationDao.saveOrUpdateAuthentication(tblAuthentication);
+					responseData.setStatus(Constants.STATUS_SUCCESS);
+				}
+				else{
+					responseData.setMessage("Old Password does not match");
+					responseData.setStatus(Constants.STATUS_FAILURE);
+				}
+			}
+			else{
+				responseData.setMessage("Login Required");
 				responseData.setStatus(Constants.STATUS_FAILURE);
 			}
 		}

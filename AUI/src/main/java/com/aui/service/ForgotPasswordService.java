@@ -10,4 +10,6 @@ public interface ForgotPasswordService {
 	ResponseData validateSecurityQuesAns(Authentication authentication);
 	
 	ResponseData resetPassword(Authentication authentication);
+
+	ResponseData updatePassword(Authentication auth);
 }

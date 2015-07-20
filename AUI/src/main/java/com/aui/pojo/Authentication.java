@@ -12,6 +12,7 @@ public class Authentication{
 	private User user;
 	private String username;
 	private String password;
+	private String oldPassword;
 	private String status;
 	private List<UserQuesAns> userQuesAns;
 
@@ -53,6 +54,14 @@ public class Authentication{
 
 	public void setUserQuesAns(List<UserQuesAns> userQuesAns) {
 		this.userQuesAns = userQuesAns;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 	

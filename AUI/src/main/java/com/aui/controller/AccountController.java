@@ -33,12 +33,12 @@ public @ResponseBody ResponseData getUserQusetion(){
 	return accountService.existingUserQuestionAnswer(userName);
 }
 
-@RequestMapping(value="/validateAuthentication", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+/*@RequestMapping(value="/validateAuthentication", method = RequestMethod.POST, produces="application/json", consumes="application/json")
 public @ResponseBody ResponseData validatePassword(@RequestBody Authentication auth){
 	String userName=authenticationService.getAuthenticatedUserName();
 	auth.setUsername(userName);
 	return accountService.validatePassword(auth);
-}
+}*/
 
 @RequestMapping(value="/updateSecurityQuestions", method = RequestMethod.POST, produces="application/json", consumes="application/json")
 public @ResponseBody ResponseData updateSecurityQuestions(@RequestBody Authentication authentication){
