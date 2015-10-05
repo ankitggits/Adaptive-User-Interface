@@ -48,19 +48,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		ResponseData responseData = null;
 		try{
 			responseData = context.getBean(ResponseData.class);
-			String username=authentication.getUsername();
-	        String password=authentication.getPassword();
-	        username = username.trim();
-	        
-	        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
-	        
-	        Authentication auth = authenticationManager.authenticate(authRequest);
-	        SecurityContextHolder.getContext().setAuthentication(auth);
-	        
-	        securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
-	
-	        if(auth.isAuthenticated()){
-	        	responseData.setData(auth.getName());
+	        if(autoLogin(authentication,request,response)){
 				responseData.setStatus(STATUS_SUCCESS);
 	        }else{
 	        	responseData.setMessage("authentication failure");
@@ -72,5 +60,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		}
 		return responseData;
 	}
+	
+	public boolean autoLogin(com.aui.pojo.Authentication authentication,HttpServletRequest request, HttpServletResponse response){
+		String username=authentication.getUsername();
+        String password=authentication.getPassword();
+        username = username.trim();
+        
+        UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
+        
+        Authentication auth = authenticationManager.authenticate(authRequest);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        
+        securityContextRepository.saveContext(SecurityContextHolder.getContext(), request, response);
+        
+        return auth.isAuthenticated();
+	} 
+	
 	
 }

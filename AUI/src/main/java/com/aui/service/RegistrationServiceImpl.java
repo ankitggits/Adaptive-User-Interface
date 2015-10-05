@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Propagation;
@@ -26,6 +29,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
 	SecurityQuesDao securityQuesDao;
 	
+	@Autowired 
+	AuthenticationService authenticationService;
+	
 	@Autowired
 	UserDao userDao;
 	
@@ -36,7 +42,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	ApplicationContext context;
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public ResponseData doRegistration(User user) {
+	public ResponseData doRegistration(User user, HttpServletRequest request, HttpServletResponse response) {
 		
 		ResponseData responseData = null; 
 		try{
@@ -52,6 +58,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				}
 			}
 			userDao.doRegister(tblUser);
+			authenticationService.autoLogin(user.getAuthentication(), request, response);
 			responseData.setStatus(Constants.STATUS_SUCCESS);
 		}
 		catch(Exception exception){

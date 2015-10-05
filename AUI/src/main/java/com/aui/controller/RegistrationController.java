@@ -2,6 +2,9 @@ package com.aui.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,8 +32,8 @@ public class RegistrationController {
 	AuthenticationService authenticationService;
 	
 	@RequestMapping(value="/register", method = RequestMethod.POST, produces="application/json", consumes="application/json")
-	public @ResponseBody ResponseData doRegister(@RequestBody User user){
-		return registrationService.doRegistration(user);
+	public @ResponseBody ResponseData doRegister(@RequestBody User user,HttpServletRequest request, HttpServletResponse response){
+		return registrationService.doRegistration(user,request, response);
 	}
 	
 	@RequestMapping(value="/securityQuestions", method = RequestMethod.GET, produces="application/json")
