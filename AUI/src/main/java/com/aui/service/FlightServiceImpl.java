@@ -9,8 +9,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aui.dao.FlightDao;
+import com.aui.model.TBLBookedTicket;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
+import com.aui.model.TBLUser;
+import com.aui.model.TBLUserQuesAns;
+import com.aui.pojo.BookedTicket;
 import com.aui.pojo.Flight;
 import com.aui.pojo.FlightLogo;
 import com.aui.pojo.ResponseData;
@@ -93,6 +97,25 @@ public class FlightServiceImpl implements FlightService {
 				tblFlightLogo.predateModification();
 				flightDao.populateFlightLogo(tblFlightLogo);
 			}
+			responseData.setStatus(Constants.STATUS_SUCCESS);
+		}
+		catch(Exception exception){
+			responseData.setErrorMessage(exception.getMessage());
+			responseData.setStatus(Constants.STATUS_ERROR);
+		}
+		return responseData;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public ResponseData bookFlight(BookedTicket bookedTicket) {
+		
+		ResponseData responseData = null; 
+		try{
+			responseData = context.getBean(ResponseData.class);
+			TBLBookedTicket tblBookedTicket = transformService.transformBookedTicket(bookedTicket);
+			tblBookedTicket.predateModification();
+			flightDao.bookFlight(tblBookedTicket);
 			responseData.setStatus(Constants.STATUS_SUCCESS);
 		}
 		catch(Exception exception){

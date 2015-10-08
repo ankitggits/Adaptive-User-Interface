@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aui.model.TBLBookedTicket;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
 import com.aui.pojo.SearchFlight;
@@ -29,6 +30,12 @@ public class FlightDaoImpl extends GenericDaoImpl<TBLFlight> implements FlightDa
 	@Override
 	public void populateFlightLogo(TBLFlightLogo flightLogo) {
 			getSession().save(flightLogo);
+	}
+
+	@Override
+	public void bookFlight(TBLBookedTicket tblBookedTicket) {
+		getSession().save(tblBookedTicket);
+		
 	}
 
 }

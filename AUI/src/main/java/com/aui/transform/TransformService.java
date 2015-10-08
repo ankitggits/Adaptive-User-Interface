@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.aui.model.TBLAddress;
 import com.aui.model.TBLAuthentication;
+import com.aui.model.TBLBookedTicket;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
 import com.aui.model.TBLSecurityQuestion;
@@ -17,6 +18,7 @@ import com.aui.model.TBLUser;
 import com.aui.model.TBLUserQuesAns;
 import com.aui.pojo.Address;
 import com.aui.pojo.Authentication;
+import com.aui.pojo.BookedTicket;
 import com.aui.pojo.Flight;
 import com.aui.pojo.FlightLogo;
 import com.aui.pojo.SecurityQuestion;
@@ -141,6 +143,24 @@ public class TransformService {
 		BeanUtils.copyProperties(tblFlightLogo, flightLogo, "logoImg");
 		flightLogo.setLogoImg(tblFlightLogo.getLogoImg().toString());
 		return flightLogo;
+	}
+	
+	public TBLBookedTicket transformBookedTicket(BookedTicket bookedTicket)
+	{
+		TBLBookedTicket tblBookedTicket = new TBLBookedTicket();
+		BeanUtils.copyProperties(bookedTicket, tblBookedTicket);
+		java.sql.Date sqlDate = new java.sql.Date(bookedTicket.getJourneyDate().getTime());
+		tblBookedTicket.setJourneyDate(sqlDate);
+		return tblBookedTicket;
+		
+	}
+	
+	public BookedTicket transformTBLBookedTicket(TBLBookedTicket tblBookedTicket){
+		
+		BookedTicket bookedTicket= new BookedTicket();
+		BeanUtils.copyProperties(tblBookedTicket, bookedTicket);
+		return bookedTicket;
+		
 	}
 	
 }
