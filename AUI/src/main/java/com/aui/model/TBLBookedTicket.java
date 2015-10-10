@@ -40,10 +40,6 @@ public class TBLBookedTicket extends TBLRoot{
 	@Type(type = "date")
 	private Date journeyDate;
 	
-	@Column(name="TICKET_CANCELLED")
-	private boolean ticketCancelled;
-	
-	
 
 	
 
@@ -97,15 +93,7 @@ public class TBLBookedTicket extends TBLRoot{
 		this.journeyDate = journeyDate;
 	}
 
-	public boolean isTicketCancelled() {
-		return ticketCancelled;
-	}
 
-	public void setTicketCancelled(boolean ticketCancelled) {
-		this.ticketCancelled = ticketCancelled;
-	}
-
-	
 	
 	
 	

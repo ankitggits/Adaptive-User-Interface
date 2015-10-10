@@ -10,7 +10,7 @@ public class BookedTicket {
 	private String destination;
 	private int passengers;
 	private Date journeyDate;
-	private boolean ticketCancelled;
+	
 	
 	public String getFlightCode() {
 		return flightCode;
@@ -49,13 +49,7 @@ public class BookedTicket {
 	public void setJourneyDate(Date journeyDate) {
 		this.journeyDate = journeyDate;
 	}
-	public boolean isTicketCancelled() {
-		return ticketCancelled;
-	}
-	public void setTicketCancelled(boolean ticketCancelled) {
-		this.ticketCancelled = false;
-	}
-	
+
 	
 	
 	
