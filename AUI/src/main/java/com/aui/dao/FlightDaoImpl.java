@@ -6,7 +6,7 @@ import org.hibernate.Query;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aui.model.TBLBookedTicket;
+import com.aui.model.TBLTicket;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
 import com.aui.pojo.SearchFlight;
@@ -33,9 +33,17 @@ public class FlightDaoImpl extends GenericDaoImpl<TBLFlight> implements FlightDa
 	}
 
 	@Override
-	public void bookFlight(TBLBookedTicket tblBookedTicket) {
+	public void bookFlight(TBLTicket tblBookedTicket) {
 		getSession().save(tblBookedTicket);
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY,readOnly = true)
+	public List<TBLFlight> getFlights() {
+		return (List<TBLFlight>)getSession().createQuery("from TBLFlight").list();
+	
 	}
 
 }

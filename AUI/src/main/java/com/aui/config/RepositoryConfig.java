@@ -21,6 +21,8 @@ import com.aui.dao.FlightDao;
 import com.aui.dao.FlightDaoImpl;
 import com.aui.dao.SecurityQuesDao;
 import com.aui.dao.SecurityQuesDaoImpl;
+import com.aui.dao.TicketDao;
+import com.aui.dao.TicketDaoImpl;
 import com.aui.dao.UserDao;
 import com.aui.dao.UserDaoImpl;
 import com.aui.dao.UserSecurityQuesAnsDao;
@@ -100,6 +102,14 @@ public class RepositoryConfig {
 	public AuthenticationDao authenticationDao() {
 
 		AuthenticationDaoImpl dao = new AuthenticationDaoImpl();
+		dao.setSessionFactory(sessionFactory().getObject());
+		return dao;
+	}
+	
+	@Bean
+	public TicketDao ticketDao() {
+
+		TicketDaoImpl dao = new TicketDaoImpl();
 		dao.setSessionFactory(sessionFactory().getObject());
 		return dao;
 	}

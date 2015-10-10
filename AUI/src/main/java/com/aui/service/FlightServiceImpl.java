@@ -1,7 +1,11 @@
 package com.aui.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -9,11 +13,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.aui.dao.FlightDao;
-import com.aui.model.TBLBookedTicket;
+import com.aui.dao.TicketDao;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
-import com.aui.model.TBLUser;
-import com.aui.model.TBLUserQuesAns;
+import com.aui.model.TBLTicket;
 import com.aui.pojo.BookedTicket;
 import com.aui.pojo.Flight;
 import com.aui.pojo.FlightLogo;
@@ -26,6 +29,9 @@ public class FlightServiceImpl implements FlightService {
 
 	@Autowired
 	FlightDao flightDao;
+	
+	@Autowired
+	TicketDao ticketDao;
 	
 	@Autowired
 	TransformService transformService;
@@ -113,9 +119,113 @@ public class FlightServiceImpl implements FlightService {
 		ResponseData responseData = null; 
 		try{
 			responseData = context.getBean(ResponseData.class);
-			TBLBookedTicket tblBookedTicket = transformService.transformBookedTicket(bookedTicket);
+			TBLTicket tblBookedTicket = transformService.transformBookedTicket(bookedTicket);
 			tblBookedTicket.predateModification();
 			flightDao.bookFlight(tblBookedTicket);
+			responseData.setStatus(Constants.STATUS_SUCCESS);
+		}
+		catch(Exception exception){
+			responseData.setErrorMessage(exception.getMessage());
+			responseData.setStatus(Constants.STATUS_ERROR);
+		}
+		return responseData;
+	}
+
+	@Override
+	public ResponseData getCities(String userName) {
+		ResponseData responseData = null; 
+		try{
+			responseData = context.getBean(ResponseData.class);
+			List<Collection<String>> prioritizedCities = new ArrayList<Collection<String>>();
+			
+			List<TBLFlight> tblFlights = flightDao.getFlights();
+			HashSet<String> otherCities = new HashSet<String>();
+			for(TBLFlight tblFlight: tblFlights){
+				otherCities.add(tblFlight.getSource());
+				otherCities.add(tblFlight.getDestination());
+			}
+			
+			//Calculate Fav Cities based on history
+			List<TBLTicket> tblTickets = ticketDao.getTicketsByUsername(userName);
+			HashSet<String> bookedCities = new HashSet<String>();
+			for(TBLTicket tblTicket: tblTickets){
+				bookedCities.add(tblTicket.getSource());
+				bookedCities.add(tblTicket.getDestination());
+			}
+			
+			class PriorityCity{
+				String city;
+				int count;
+				public String getCity() {
+					return city;
+				}
+				public void setCity(String city) {
+					this.city = city;
+				}
+				public int getCount() {
+					return count;
+				}
+				public void setCount(int count) {
+					this.count = count;
+				}
+				
+				@Override
+				public boolean equals(Object obj) {
+					PriorityCity other = (PriorityCity) obj;
+					if (city.equals(other.city)) return true;
+					else return false;
+				}
+			}
+			
+			
+			Set<PriorityCity> priorityCities = new HashSet<PriorityCity>();
+			
+			for(String city:bookedCities){
+				for(TBLTicket tblTicket: tblTickets){
+					if(tblTicket.getSource().equals(city) || tblTicket.getDestination().equals(city)){
+						boolean cityFoundInPriorityList = false;
+						
+						for(PriorityCity priorityCity:priorityCities){
+							if(priorityCity.getCity().equals(city)){
+								priorityCity.setCount(priorityCity.getCount()+1);
+								cityFoundInPriorityList = true;
+								break;
+							}
+						}
+						if(!cityFoundInPriorityList){
+							PriorityCity pc = new PriorityCity();
+							pc.setCity(city);
+							pc.setCount(1);
+							priorityCities.add(pc);
+						}
+					}
+				}
+			}
+			
+			ArrayList<PriorityCity> priorityCityList = new ArrayList<PriorityCity>(priorityCities);
+			
+			java.util.Collections.sort(priorityCityList, new Comparator<PriorityCity>() {
+
+				@Override
+				public int compare(PriorityCity o1, PriorityCity o2) {
+					if(o1.count>o2.count) return 1;
+					else if(o1.count<o2.count) return -1;
+					else return 0;
+				}
+				
+			});
+			
+			ArrayList<String> favCities = new ArrayList<String>();
+			for(PriorityCity priorityCity:priorityCityList){
+				favCities.add(priorityCity.getCity());
+			}
+					
+			otherCities.removeAll(favCities);
+			
+			prioritizedCities.add(favCities);
+			prioritizedCities.add(otherCities);
+			
+			responseData.setData(prioritizedCities);
 			responseData.setStatus(Constants.STATUS_SUCCESS);
 		}
 		catch(Exception exception){

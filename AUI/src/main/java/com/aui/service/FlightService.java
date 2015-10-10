@@ -17,4 +17,6 @@ public interface FlightService {
 	ResponseData saveFlightLogo(List<FlightLogo> logo);
 	
 	ResponseData bookFlight(BookedTicket bookedTicket);
+
+	ResponseData getCities(String userName);
 }

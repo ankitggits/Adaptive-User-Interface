@@ -50,4 +50,10 @@ public class FlightController {
 		return flightService.bookFlight(bookedTicket);
 	}
 	
+	@RequestMapping(value="/getCities", method = RequestMethod.GET, produces="application/json")
+	public @ResponseBody ResponseData getCities(){
+		String userName=authenticationService.getAuthenticatedUserName();
+		return flightService.getCities(userName);
+	}
+	
 }

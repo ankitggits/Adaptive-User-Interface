@@ -2,6 +2,8 @@ package com.aui.pojo;
 
 import java.util.Date;
 
+
+
 public class BookedTicket {
 
 	private String userName;
@@ -10,7 +12,10 @@ public class BookedTicket {
 	private String destination;
 	private int passengers;
 	private Date journeyDate;
-	
+	private long baseFare;
+	private long totalFare;
+	private long passServiceFees;
+	private long govnServiceFees;
 	
 	public String getFlightCode() {
 		return flightCode;
@@ -48,6 +53,30 @@ public class BookedTicket {
 	}
 	public void setJourneyDate(Date journeyDate) {
 		this.journeyDate = journeyDate;
+	}
+	public long getBaseFare() {
+		return baseFare;
+	}
+	public void setBaseFare(long baseFare) {
+		this.baseFare = baseFare;
+	}
+	public long getTotalFare() {
+		return totalFare;
+	}
+	public void setTotalFare(long totalFare) {
+		this.totalFare = totalFare;
+	}
+	public long getPassServiceFees() {
+		return passServiceFees;
+	}
+	public void setPassServiceFees(long passServiceFees) {
+		this.passServiceFees = passServiceFees;
+	}
+	public long getGovnServiceFees() {
+		return govnServiceFees;
+	}
+	public void setGovnServiceFees(long govnServiceFees) {
+		this.govnServiceFees = govnServiceFees;
 	}
 
 	
