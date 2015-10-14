@@ -132,6 +132,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData getCities(String userName) {
 		ResponseData responseData = null; 
 		try{
@@ -208,8 +209,8 @@ public class FlightServiceImpl implements FlightService {
 
 				@Override
 				public int compare(PriorityCity o1, PriorityCity o2) {
-					if(o1.count>o2.count) return 1;
-					else if(o1.count<o2.count) return -1;
+					if(o1.count<o2.count) return 1;
+					else if(o1.count>o2.count) return -1;
 					else return 0;
 				}
 				
