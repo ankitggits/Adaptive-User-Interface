@@ -4,6 +4,8 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import com.aui.framework.config.FrameworkConstants;
 import com.aui.framework.dao.ActivityDao;
@@ -12,13 +14,13 @@ import com.aui.pojo.ResponseData;
 import com.aui.util.Constants;
 
 @Aspect 
-//@PropertySource("classpath:config/properties/AUIFrameworkConfig.properties")
+@PropertySource("classpath:config/properties/AUIFrameworkConfig.properties")
 public class UserExperienceLevelAspect {
 
-	//@Value("${threshold.frequency.low}")
+	@Value("${threshold.frequency.low}")
 	private String thresholdFrequencyForLow = "2";
 	
-	//@Value("${threshold.frequency.high}")
+	@Value("${threshold.frequency.high}")
 	private String thresholdFrequencyForHigh = "5";
 	
 	@Autowired

@@ -1,5 +1,7 @@
 package com.aui.framework.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,14 @@ public class ActivityDaoImpl extends GenericDaoImpl<TBLActivity> implements Acti
 	public TBLActivity retrieveActivityByUserName(String userName) {
 		Query query = getSession().createQuery("from TBLActivity ta where ta.userName =:userName");
 		return (TBLActivity)query.setParameter("userName", userName).uniqueResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED,readOnly = true)
+	public List<TBLActivity> retrieveAllActivitys() {
+		Query query = getSession().createQuery("from TBLActivity");
+		return (List<TBLActivity>)query.list();
 	}
 
 }

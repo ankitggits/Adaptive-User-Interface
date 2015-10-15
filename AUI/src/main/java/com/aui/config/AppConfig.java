@@ -42,7 +42,9 @@ public class AppConfig {
 	@Bean
 	@Scope(value="prototype")
 	public ResponseData responseData(){
-		return new ResponseData();
+		ResponseData responseData = new ResponseData();
+		responseData.setMessage("Testing listner");
+		return responseData;
 	}
 	
 	/*-------SERVICES-------*/

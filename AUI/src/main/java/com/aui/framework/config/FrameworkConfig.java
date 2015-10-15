@@ -9,6 +9,9 @@ import com.aui.framework.aspect.ActivityAspect;
 import com.aui.framework.aspect.UserExperienceLevelAspect;
 import com.aui.framework.dao.ActivityDao;
 import com.aui.framework.dao.ActivityDaoImpl;
+import com.aui.framework.service.ActivityService;
+import com.aui.framework.service.ActivityServiceImpl;
+import com.aui.framwork.listener.ActivityListener;
 
 @Configuration
 public class FrameworkConfig {
@@ -35,5 +38,17 @@ public class FrameworkConfig {
 		ActivityDaoImpl dao = new ActivityDaoImpl();
 		dao.setSessionFactory(sessionFactory.getObject());
 		return dao;
+	}
+	
+	/***************Listener**************/
+	@Bean
+	public ActivityListener activityListener(){
+		return new ActivityListener();
+	}
+	
+	/***************Service**************/
+	@Bean
+	public ActivityService activityService(){
+		return new ActivityServiceImpl();
 	}
 }
