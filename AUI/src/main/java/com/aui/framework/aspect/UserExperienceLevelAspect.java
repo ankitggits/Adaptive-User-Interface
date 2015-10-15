@@ -14,13 +14,13 @@ import com.aui.pojo.ResponseData;
 import com.aui.util.Constants;
 
 @Aspect 
-@PropertySource("classpath:config/properties/AUIFrameworkConfig.properties")
+//@PropertySource("classpath:config/properties/AUIFrameworkConfig.properties")
 public class UserExperienceLevelAspect {
 
-	@Value("${threshold.frequency.low}")
+	//@Value("${threshold.frequency.low}")
 	private String thresholdFrequencyForLow = "2";
 	
-	@Value("${threshold.frequency.high}")
+	//@Value("${threshold.frequency.high}")
 	private String thresholdFrequencyForHigh = "5";
 	
 	@Autowired
