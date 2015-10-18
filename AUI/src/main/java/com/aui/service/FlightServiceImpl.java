@@ -3,8 +3,10 @@ package com.aui.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,6 +230,52 @@ public class FlightServiceImpl implements FlightService {
 			
 			responseData.setData(prioritizedCities);
 			responseData.setStatus(Constants.STATUS_SUCCESS);
+		}
+		catch(Exception exception){
+			responseData.setErrorMessage(exception.getMessage());
+			responseData.setStatus(Constants.STATUS_ERROR);
+		}
+		return responseData;
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public ResponseData getFrequentCities(String userName) {
+		ResponseData responseData = null; 
+		try{
+			responseData = context.getBean(ResponseData.class);
+			
+			String mostBooked = "";
+			
+			Map<String, Integer> cityMap= null;
+			List<TBLTicket> tblTickets = ticketDao.getTicketsByUsername(userName);
+			
+			if(null!=tblTickets && tblTickets.size()>0){
+				cityMap= new HashMap<>();
+				for(TBLTicket ticket: tblTickets){
+					String sourceDestination= ticket.getSource()+"^"+ticket.getDestination();
+					if(cityMap.containsKey(sourceDestination)){
+						int count=cityMap.get(sourceDestination);
+						cityMap.put(sourceDestination, count+1);
+					}else{
+						cityMap.put(sourceDestination, 1);
+					}
+				}
+				int highestValue=0;
+				
+				for(String city:cityMap.keySet()){
+					if(cityMap.get(city)>=highestValue){
+						int noOfBooking = cityMap.get(city);
+						highestValue=noOfBooking;
+						mostBooked = city;
+					}
+				}
+				responseData.setData(mostBooked);
+				responseData.setStatus(Constants.STATUS_SUCCESS);
+			}else{
+				responseData.setStatus(Constants.STATUS_FAILURE);
+				responseData.setMessage("No ticket booked earlier");
+			}
 		}
 		catch(Exception exception){
 			responseData.setErrorMessage(exception.getMessage());

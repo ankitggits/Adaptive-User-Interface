@@ -56,4 +56,10 @@ public class FlightController {
 		return flightService.getCities(userName);
 	}
 	
+	
+	@RequestMapping(value="/getFrequentCities", method = RequestMethod.GET, produces="application/json")
+	public @ResponseBody ResponseData getFrequentCities(){
+		String userName=authenticationService.getAuthenticatedUserName();
+		return flightService.getFrequentCities(userName);
+	}
 }

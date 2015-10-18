@@ -10,14 +10,144 @@
 		<economyfare>2500</economyfare>
 		<businessfare>5000</businessfare>
 	</flight>
-	<flight flightCode="WC30">
-		<name>Jet Airways</name>
+	<flight flightCode="J451">
+		<name>KingFisher</name>
 		<source>Banglore</source>
-		<destination>Delhi</destination>
-		<departure>12:30 pm</departure>
-		<arrival>2:00 pm</arrival>
+		<destination>Mumbai</destination>
+		<departure>1:30 pm</departure>
+		<arrival>3:00 pm</arrival>
 		<duration>1:30</duration>
-		<economyfare>3500</economyfare>
+		<economyfare>2500</economyfare>
+		<businessfare>5000</businessfare>
+	</flight>
+	
+	<flight flightCode="SJ210">
+		<name>Spice Jet</name>
+		<source>Mumbai</source>
+		<destination>Banglore</destination>
+		<departure>4:30 pm</departure>
+		<arrival>6:00 pm</arrival>
+		<duration>1:30</duration>
+		<economyfare>3000</economyfare>
 		<businessfare>6000</businessfare>
 	</flight>
+	<flight flightCode="SJ211">
+		<name>Spice Jet</name>
+		<source>Banglore</source>
+		<destination>Mumbai</destination>
+		<departure>6:30 pm</departure>
+		<arrival>8:00 pm</arrival>
+		<duration>1:30</duration>
+		<economyfare>3000</economyfare>
+		<businessfare>6000</businessfare>
+	</flight>
+	
+	<flight flightCode="J680">
+		<name>KingFisher</name>
+		<source>Mumbai</source>
+		<destination>New Delhi</destination>
+		<departure>10:30 am</departure>
+		<arrival>12:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	<flight flightCode="J451">
+		<name>KingFisher</name>
+		<source>New Delhi</source>
+		<destination>Mumbai</destination>
+		<departure>1:30 pm</departure>
+		<arrival>3:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	
+	<flight flightCode="AI500">
+		<name>Air India</name>
+		<source>Mumbai</source>
+		<destination>New Delhi</destination>
+		<departure>11:30 am</departure>
+		<arrival>1:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3000</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	<flight flightCode="AI500">
+		<name>Air India</name>
+		<source>New Delhi</source>
+		<destination>Mumbai</destination>
+		<departure>1:30 pm</departure>
+		<arrival>3:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	
+	
+	<flight flightCode="IN110">
+		<name>Indigo</name>
+		<source>Mumbai</source>
+		<destination>New Delhi</destination>
+		<departure>6:30 pm</departure>
+		<arrival>8:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	<flight flightCode="IN111">
+		<name>Indigo</name>
+		<source>New Delhi</source>
+		<destination>Mumbai</destination>
+		<departure>9:00 pm</departure>
+		<arrival>11:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	
+	<flight flightCode="IN180">
+		<name>Indigo</name>
+		<source>Bangalore</source>
+		<destination>New Delhi</destination>
+		<departure>6:30 pm</departure>
+		<arrival>8:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	<flight flightCode="IN181">
+		<name>Indigo</name>
+		<source>New Delhi</source>
+		<destination>Bangalore</destination>
+		<departure>9:00 pm</departure>
+		<arrival>11:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>3500</economyfare>
+		<businessfare>5500</businessfare>
+	</flight>
+	
+	<flight flightCode="SJ180">
+		<name>Spice Jet</name>
+		<source>Bangalore</source>
+		<destination>New Delhi</destination>
+		<departure>6:30 am</departure>
+		<arrival>8:30 am</arrival>
+		<duration>2:00</duration>
+		<economyfare>4500</economyfare>
+		<businessfare>6000</businessfare>
+	</flight>
+	<flight flightCode="SJ181">
+		<name>Spice Jet</name>
+		<source>New Delhi</source>
+		<destination>Bangalore</destination>
+		<departure>9:00 pm</departure>
+		<arrival>11:30 pm</arrival>
+		<duration>2:00</duration>
+		<economyfare>6000</economyfare>
+		<businessfare>8000</businessfare>
+	</flight>
+	
+	
+	
 </flights>

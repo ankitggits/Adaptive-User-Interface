@@ -49,6 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		try{
 			responseData = context.getBean(ResponseData.class);
 	        if(autoLogin(authentication,request,response)){
+	        	responseData.setData(authentication.getUsername());
 				responseData.setStatus(STATUS_SUCCESS);
 	        }else{
 	        	responseData.setMessage("authentication failure");

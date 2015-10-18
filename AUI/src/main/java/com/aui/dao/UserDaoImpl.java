@@ -21,4 +21,10 @@ public class UserDaoImpl extends GenericDaoImpl<TBLUser>implements UserDao{
 		return (TBLUser)query.setParameter("userName", userName).uniqueResult();
 	}
 	
+	@Transactional(propagation = Propagation.REQUIRES_NEW,readOnly = false)
+	public void truncateTable(String tableToTruncate){
+		String hql = String.format("delete from %s",tableToTruncate);
+	    getSession().createQuery(hql).executeUpdate();
+	}
+	
 }

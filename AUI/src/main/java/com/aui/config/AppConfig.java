@@ -43,7 +43,6 @@ public class AppConfig {
 	@Scope(value="prototype")
 	public ResponseData responseData(){
 		ResponseData responseData = new ResponseData();
-		responseData.setMessage("Testing listner");
 		return responseData;
 	}
 	

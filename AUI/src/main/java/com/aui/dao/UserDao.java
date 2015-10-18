@@ -7,4 +7,6 @@ public interface UserDao extends GenericDao<TBLUser>{
 	void doRegister(TBLUser tblUser);
 	
 	TBLUser getUserByUserName(String userName);
+	
+	void truncateTable(String tableToTruncate);
 }

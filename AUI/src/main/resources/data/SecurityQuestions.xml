@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<securityQuestions>
+	<securityQuestion group="1">
+		<question>Pet's name</question>
+	</securityQuestion>
+	<securityQuestion group="1">
+		<question>School's name</question>
+	</securityQuestion>
+	<securityQuestion group="1">
+		<question>Mother's maiden name</question>
+	</securityQuestion>
+	<securityQuestion group="2">
+		<question>Fav Sport</question>
+	</securityQuestion>
+	<securityQuestion group="2">
+		<question>Fav Novel</question>
+	</securityQuestion>
+	<securityQuestion group="2">
+		<question>Fav Movie</question>
+	</securityQuestion>
+	<securityQuestion group="3">
+		<question>Nick name</question>
+	</securityQuestion>
+	<securityQuestion group="3">
+		<question>Sibling name</question>
+	</securityQuestion>
+	<securityQuestion group="3">
+		<question>Best Friend's name</question>
+	</securityQuestion>
+</securityQuestions>

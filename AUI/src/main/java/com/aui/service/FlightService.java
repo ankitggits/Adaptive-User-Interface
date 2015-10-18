@@ -19,4 +19,7 @@ public interface FlightService {
 	ResponseData bookFlight(BookedTicket bookedTicket);
 
 	ResponseData getCities(String userName);
+	
+	ResponseData getFrequentCities(String userName);
+	
 }
