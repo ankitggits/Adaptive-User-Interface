@@ -1,6 +1,7 @@
 package com.aui.framework.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,28 @@ public class TBLActivity extends TBLRoot implements Serializable{
 	
 	@Column
 	private long loginFrequency;
+	
+	@Column
+	private Date lastSuccessfullTransaction;
+	
+	@Column
+	private boolean hasEverBooked=false;
+	
+	public boolean isHasEverBooked() {
+		return hasEverBooked;
+	}
+
+	public void setHasEverBooked(boolean hasEverBooked) {
+		this.hasEverBooked = hasEverBooked;
+	}
+
+	public Date getlastSuccessfullTransaction() {
+		return lastSuccessfullTransaction;
+	}
+
+	public void setlastSuccessfullTransaction(Date lastSuccessfullTransaction) {
+		this.lastSuccessfullTransaction = lastSuccessfullTransaction;
+	}
 
 	public String getUserName() {
 		return userName;

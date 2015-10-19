@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aui.dao.FlightDao;
 import com.aui.dao.TicketDao;
+import com.aui.framework.aspect.MaintainTransactionLog;
 import com.aui.model.TBLFlight;
 import com.aui.model.TBLFlightLogo;
 import com.aui.model.TBLTicket;
@@ -115,6 +116,7 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
+	@MaintainTransactionLog
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData bookFlight(BookedTicket bookedTicket) {
 		
@@ -284,4 +286,32 @@ public class FlightServiceImpl implements FlightService {
 		return responseData;
 	}
 
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public ResponseData hasEverTravelled(String userName) {
+		ResponseData responseData = null; 
+		try{
+			responseData = context.getBean(ResponseData.class);
+			if(userName==null || userName==""){
+				responseData.setStatus(Constants.STATUS_FAILURE);
+				responseData.setMessage("Login required");
+			}else{
+				long noOfBookings = ticketDao.getNoOfBookings(userName);
+				System.out.println("user: "+userName+" has booked "+noOfBookings+" tickets");
+				if(noOfBookings>0){
+					responseData.setData(noOfBookings);
+					responseData.setStatus(Constants.STATUS_SUCCESS);
+				}else{
+					responseData.setStatus(Constants.STATUS_FAILURE);
+					responseData.setMessage("No ticket booked earlier");
+				}
+			}
+		}
+		catch(Exception exception){
+			responseData.setErrorMessage(exception.getMessage());
+			responseData.setStatus(Constants.STATUS_ERROR);
+		}
+		return responseData;
+	}
 }

@@ -8,4 +8,5 @@ public interface TicketDao extends GenericDao<TBLTicket>{
 
 	List<TBLTicket> getTicketsByUsername(String username);
 	
+	long getNoOfBookings(String username);
 }

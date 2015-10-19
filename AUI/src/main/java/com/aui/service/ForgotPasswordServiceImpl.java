@@ -12,6 +12,7 @@ import com.aui.dao.AuthenticationDao;
 import com.aui.dao.SecurityQuesDao;
 import com.aui.dao.UserDao;
 import com.aui.dao.UserSecurityQuesAnsDao;
+import com.aui.framework.aspect.MaintainTransactionLog;
 import com.aui.model.TBLAuthentication;
 import com.aui.model.TBLSecurityQuestion;
 import com.aui.model.TBLUserQuesAns;
@@ -161,6 +162,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 	}
 
 	@Override
+	@MaintainTransactionLog
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData updatePassword(Authentication authentication) {
 		ResponseData responseData = null;

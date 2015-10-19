@@ -62,4 +62,11 @@ public class FlightController {
 		String userName=authenticationService.getAuthenticatedUserName();
 		return flightService.getFrequentCities(userName);
 	}
+	
+
+	@RequestMapping(value="/hasEverTravelled", method = RequestMethod.GET, produces="application/json")
+	public @ResponseBody ResponseData hasEverTravelled(){
+		String userName=authenticationService.getAuthenticatedUserName();
+		return flightService.hasEverTravelled(userName);
+	}
 }

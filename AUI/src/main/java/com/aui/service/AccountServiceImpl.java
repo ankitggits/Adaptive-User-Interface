@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aui.dao.AuthenticationDao;
 import com.aui.dao.SecurityQuesDao;
 import com.aui.dao.UserDao;
+import com.aui.framework.aspect.MaintainTransactionLog;
 import com.aui.model.TBLAuthentication;
 import com.aui.model.TBLUserQuesAns;
 import com.aui.pojo.Authentication;
@@ -107,6 +108,7 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
+	@MaintainTransactionLog
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData updateSecurityQuestions(Authentication authentication, String userName) {
 		ResponseData responseData=null;

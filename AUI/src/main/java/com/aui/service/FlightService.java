@@ -21,5 +21,7 @@ public interface FlightService {
 	ResponseData getCities(String userName);
 	
 	ResponseData getFrequentCities(String userName);
+
+	ResponseData hasEverTravelled(String userName);
 	
 }

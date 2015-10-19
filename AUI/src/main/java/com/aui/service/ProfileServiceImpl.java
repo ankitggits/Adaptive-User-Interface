@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aui.dao.AuthenticationDao;
 import com.aui.dao.UserDao;
+import com.aui.framework.aspect.MaintainTransactionLog;
 import com.aui.model.TBLUser;
 import com.aui.pojo.ResponseData;
 import com.aui.pojo.User;
@@ -68,6 +69,7 @@ public class ProfileServiceImpl implements ProfileService{
 	}
 	
 	@Override
+	@MaintainTransactionLog
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData updateProfile(User user, String userName) {
 		ResponseData responseData= null;

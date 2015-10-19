@@ -17,4 +17,10 @@ public class TicketDaoImpl extends GenericDaoImpl<TBLTicket> implements TicketDa
 		return (List<TBLTicket>) getSession().createQuery("from TBLTicket t where t.userName=:userName").setParameter("userName", userName).list();
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.MANDATORY,readOnly=false)
+	public long getNoOfBookings(String userName) {
+		return (Long) getSession().createQuery("select count(*) from TBLTicket t where t.userName=:userName").setParameter("userName", userName).uniqueResult();
+	}
+
 }
