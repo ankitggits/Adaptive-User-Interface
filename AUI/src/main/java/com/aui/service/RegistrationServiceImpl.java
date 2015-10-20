@@ -21,6 +21,7 @@ import com.aui.model.TBLUserQuesAns;
 import com.aui.pojo.ResponseData;
 import com.aui.pojo.SecurityQuestion;
 import com.aui.pojo.User;
+import com.aui.security.AutoLogin;
 import com.aui.transform.TransformService;
 import com.aui.util.Constants;
 
@@ -28,9 +29,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	@Autowired
 	SecurityQuesDao securityQuesDao;
-	
-	@Autowired 
-	AuthenticationService authenticationService;
 	
 	@Autowired
 	UserDao userDao;
@@ -40,6 +38,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 	
 	@Autowired
 	ApplicationContext context;
+	
+	@Autowired
+	AutoLogin autoLogin;
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public ResponseData doRegistration(User user, HttpServletRequest request, HttpServletResponse response) {
@@ -58,7 +59,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				}
 			}
 			userDao.doRegister(tblUser);
-			authenticationService.autoLogin(user.getAuthentication(), request, response);
+			autoLogin.doAutoLogin(user.getAuthentication(), request, response);
 			responseData.setStatus(Constants.STATUS_SUCCESS);
 		}
 		catch(Exception exception){

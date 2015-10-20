@@ -13,7 +13,7 @@ public class ResponseData {
 	private String errorMessage;
 	private String errorCode;
 	private String userLevelIndicator;
-	
+	private boolean userLevelChanged;
 	
 	public Object getData() {
 		return data;
@@ -51,6 +51,11 @@ public class ResponseData {
 	public void setUserLevelIndicator(String userLevelIndicator) {
 		this.userLevelIndicator = userLevelIndicator;
 	}
-	
+	public boolean isUserLevelChanged() {
+		return userLevelChanged;
+	}
+	public void setUserLevelChanged(boolean userLevelChanged) {
+		this.userLevelChanged = userLevelChanged;
+	}
 	
 }

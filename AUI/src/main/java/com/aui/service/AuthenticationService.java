@@ -13,5 +13,4 @@ public interface AuthenticationService {
 	
 	ResponseData doUserLogin(Authentication authentication, HttpServletRequest request, HttpServletResponse response);
 	
-	boolean autoLogin(com.aui.pojo.Authentication authentication,HttpServletRequest request, HttpServletResponse response);
 }

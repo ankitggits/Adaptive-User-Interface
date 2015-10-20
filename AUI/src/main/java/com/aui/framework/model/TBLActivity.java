@@ -25,22 +25,28 @@ public class TBLActivity extends TBLRoot implements Serializable{
 	private Date lastSuccessfullTransaction;
 	
 	@Column
+	private long levelFactor;
+	
+	@Column
+	private String userLevel;
+	
+	@Column
 	private boolean hasEverBooked=false;
 	
-	public boolean isHasEverBooked() {
+	public String getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(String userLevel) {
+		this.userLevel = userLevel;
+	}
+
+	public boolean hasEverBooked() {
 		return hasEverBooked;
 	}
 
-	public void setHasEverBooked(boolean hasEverBooked) {
+	public void setEverBooked(boolean hasEverBooked) {
 		this.hasEverBooked = hasEverBooked;
-	}
-
-	public Date getlastSuccessfullTransaction() {
-		return lastSuccessfullTransaction;
-	}
-
-	public void setlastSuccessfullTransaction(Date lastSuccessfullTransaction) {
-		this.lastSuccessfullTransaction = lastSuccessfullTransaction;
 	}
 
 	public String getUserName() {
@@ -57,6 +63,22 @@ public class TBLActivity extends TBLRoot implements Serializable{
 
 	public void setLoginFrequency(long loginFrequency) {
 		this.loginFrequency = loginFrequency;
+	}
+
+	public Date getLastSuccessfullTransaction() {
+		return lastSuccessfullTransaction;
+	}
+
+	public void setLastSuccessfullTransaction(Date lastSuccessfullTransaction) {
+		this.lastSuccessfullTransaction = lastSuccessfullTransaction;
+	}
+
+	public long getLevelFactor() {
+		return levelFactor;
+	}
+
+	public void setLevelFactor(long levelFactor) {
+		this.levelFactor = levelFactor;
 	}
 	
 }

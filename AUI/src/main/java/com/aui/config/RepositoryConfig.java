@@ -35,6 +35,7 @@ import com.aui.dao.UserSecurityQuesAnsDaoImpl;
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:config/database/properties/database.properties")
+@PropertySource("classpath:config/properties/AUIFrameworkConfig.properties")
 public class RepositoryConfig {
 
 	@Value("${jdbc.driverClassName}")

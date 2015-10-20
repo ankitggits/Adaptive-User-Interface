@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 import com.aui.dao.UserDao;
@@ -17,7 +16,6 @@ import com.aui.service.FlightService;
 import com.aui.service.RegistrationService;
 import com.aui.transform.ResourcePopulate;
 
-@PropertySource("classpath:config/database/properties/database.properties")
 public class ActivityListener implements ApplicationListener<ContextRefreshedEvent>{
 
 	@Autowired

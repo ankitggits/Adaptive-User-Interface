@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.aui.framework.config.FrameworkConstants;
 import com.aui.framework.dao.ActivityDao;
 import com.aui.framework.model.TBLActivity;
 import com.aui.pojo.ResponseData;
@@ -24,7 +25,7 @@ public class ActivityAspect {
 	private AuthenticationService authenticationService;
 	
 	@AfterReturning(pointcut="loginPointcut()", returning="isAuthenticated")
-	public void maintainLoginInfo(Boolean isAuthenticated){
+	public void maintainLoginInfo(boolean isAuthenticated){
 		
 		TBLActivity tblActivity = null;
 		
@@ -35,10 +36,12 @@ public class ActivityAspect {
 				tblActivity = new TBLActivity();
 				tblActivity.setUserName(userName);
 				tblActivity.setLoginFrequency(1);
+				tblActivity.setLevelFactor(1);
+				tblActivity.setUserLevel(FrameworkConstants.USER_LEVEL_INITIAL);
 				tblActivity.predateModification();
 			}else{
 				tblActivity.setLoginFrequency(tblActivity.getLoginFrequency()+1);
-				//tblActivity.setLastLogin(tblActivity.getUpdatedOn());
+				tblActivity.setLevelFactor(tblActivity.getLevelFactor()+1);
 				tblActivity.postDateModification();
 			}
 			activityDao.logActivity(tblActivity);
@@ -54,16 +57,16 @@ public class ActivityAspect {
 			tblActivity = activityDao.retrieveActivityByUserName(userName);
 			if(tblActivity!=null){
 				tblActivity.postDateModification();
-				tblActivity.setlastSuccessfullTransaction(new Date());
+				tblActivity.setLastSuccessfullTransaction(new Date());
 				if(joinPoint.getSignature().getName().equals("bookFlight")){
-					tblActivity.setHasEverBooked(true);
+					tblActivity.setEverBooked(true);
 				}
 			}
 			activityDao.logActivity(tblActivity);
 		}
 	}
 	
-	@Pointcut("execution(* com.aui.service.AuthenticationService.autoLogin(..))")
+	@Pointcut("execution(* com.aui.security.AutoLogin.doAutoLogin(..))")
 	public void loginPointcut(){
 	}
 	
