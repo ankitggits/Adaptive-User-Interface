@@ -12,4 +12,5 @@ public interface ActivityDao extends GenericDao<TBLActivity>{
 	TBLActivity retrieveActivityByUserName(String userName);
 	
 	List<TBLActivity> retrieveAllActivitys();
+	
 }

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import com.aui.framework.aspect.ActivityAspect;
-import com.aui.framework.aspect.UserExperienceLevelAspect;
 import com.aui.framework.dao.ActivityDao;
 import com.aui.framework.dao.ActivityDaoImpl;
 import com.aui.framework.service.ActivityService;
@@ -23,11 +22,6 @@ public class FrameworkConfig {
 	@Bean
 	public ActivityAspect activityAspect(){
 		return new ActivityAspect();
-	}
-	
-	@Bean
-	public UserExperienceLevelAspect userExperienceLevelAspect(){
-		return new UserExperienceLevelAspect();
 	}
 	
 	

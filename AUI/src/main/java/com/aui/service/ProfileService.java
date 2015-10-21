@@ -10,6 +10,4 @@ public interface ProfileService {
 	ResponseData getUserDetails(String userName);
 	
 	ResponseData updateProfile(User user, String userName);
-
-	ResponseData getUserLevel(String userName);
 }

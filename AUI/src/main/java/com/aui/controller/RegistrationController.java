@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aui.framework.service.ActivityService;
 import com.aui.pojo.ResponseData;
 import com.aui.pojo.SecurityQuestion;
 import com.aui.pojo.User;
@@ -27,6 +28,9 @@ public class RegistrationController {
 	
 	@Autowired
 	ProfileService profileService;
+	
+	@Autowired
+	ActivityService activityService;
 	
 	@Autowired
 	AuthenticationService authenticationService;
@@ -49,6 +53,12 @@ public class RegistrationController {
 	@RequestMapping(value="/userLevel", method = RequestMethod.GET, produces="application/json")
 	public @ResponseBody ResponseData getUserLevel(){
 		String userName = authenticationService.getAuthenticatedUserName();
-		return profileService.getUserLevel(userName);
+		return activityService.getUserLevel(userName);
+	}
+	
+	@RequestMapping(value="/userExperienceRating", method = RequestMethod.POST, produces="application/json")
+	public @ResponseBody ResponseData userExperienceRating(@RequestBody long rating){
+		String userName = authenticationService.getAuthenticatedUserName();
+		return activityService.saveUserExperienceRating(userName, rating);
 	}
 }

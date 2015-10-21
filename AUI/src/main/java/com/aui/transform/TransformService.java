@@ -158,9 +158,11 @@ public class TransformService {
 	public BookedTicket transformTBLBookedTicket(TBLTicket tblBookedTicket){
 		
 		BookedTicket bookedTicket= new BookedTicket();
-		BeanUtils.copyProperties(tblBookedTicket, bookedTicket);
+		BeanUtils.copyProperties(tblBookedTicket, bookedTicket, "createdOn");
+		String date = tblBookedTicket.getCreatedOn().toString();  
+		String[] dateFormat = date.split(" ");
+		bookedTicket.setCreatedOn(dateFormat[0]);
 		return bookedTicket;
-		
 	}
 	
 }

@@ -16,6 +16,7 @@ public class BookedTicket {
 	private long totalFare;
 	private long passServiceFees;
 	private long govnServiceFees;
+	private String createdOn;
 	
 	public String getFlightCode() {
 		return flightCode;
@@ -77,6 +78,12 @@ public class BookedTicket {
 	}
 	public void setGovnServiceFees(long govnServiceFees) {
 		this.govnServiceFees = govnServiceFees;
+	}
+	public String getCreatedOn() {
+		return createdOn;
+	}
+	public void setCreatedOn(String createdOn) {
+		this.createdOn = createdOn;
 	}
 
 	

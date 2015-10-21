@@ -97,25 +97,5 @@ public class ProfileServiceImpl implements ProfileService{
 		}
 		
 	}
-
-	@Override
-	public ResponseData getUserLevel(String userName) {
-		
-		ResponseData responseData = null; 
-		try{
-			responseData = context.getBean(ResponseData.class);
-			if(userName==null || userName==""){
-				responseData.setMessage("Login Required");
-				responseData.setStatus(Constants.STATUS_FAILURE);
-				return responseData;
-			}
-			responseData.setData(userName);
-			responseData.setStatus(Constants.STATUS_SUCCESS);
-		}catch(Exception exception){
-			responseData.setErrorMessage(exception.getMessage());
-			responseData.setStatus(Constants.STATUS_ERROR);
-		}
-		return responseData;
-	}
 	
 }

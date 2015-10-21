@@ -24,6 +24,8 @@ import com.aui.service.ProfileService;
 import com.aui.service.ProfileServiceImpl;
 import com.aui.service.RegistrationService;
 import com.aui.service.RegistrationServiceImpl;
+import com.aui.service.TicketService;
+import com.aui.service.TicketServiceImpl;
 
 
 @Configuration
@@ -75,6 +77,11 @@ public class AppConfig {
 	@Bean
 	public AccountService accountService(){
 		return new AccountServiceImpl();
+	}
+	
+	@Bean
+	public TicketService ticketService(){
+		return new TicketServiceImpl();
 	}
 	
 }

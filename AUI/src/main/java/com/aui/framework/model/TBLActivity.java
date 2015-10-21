@@ -31,6 +31,9 @@ public class TBLActivity extends TBLRoot implements Serializable{
 	private String userLevel;
 	
 	@Column
+	private long userExperienceRating=0;
+	
+	@Column
 	private boolean hasEverBooked=false;
 	
 	public String getUserLevel() {
@@ -79,6 +82,14 @@ public class TBLActivity extends TBLRoot implements Serializable{
 
 	public void setLevelFactor(long levelFactor) {
 		this.levelFactor = levelFactor;
+	}
+	
+	public long getUserExperienceRating() {
+		return userExperienceRating;
+	}
+
+	public void setUserExperienceRating(long userExperienceRating) {
+		this.userExperienceRating = userExperienceRating;
 	}
 	
 }

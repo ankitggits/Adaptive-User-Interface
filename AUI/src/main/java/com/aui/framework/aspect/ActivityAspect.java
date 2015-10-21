@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.aui.framework.config.FrameworkConstants;
 import com.aui.framework.dao.ActivityDao;
@@ -23,6 +24,12 @@ public class ActivityAspect {
 	
 	@Autowired
 	private AuthenticationService authenticationService;
+	
+	@Value("${threshold.frequency.low}")
+	private long thresholdFrequencyForLow;
+	
+	@Value("${threshold.frequency.high}")
+	private long thresholdFrequencyForHigh;
 	
 	@AfterReturning(pointcut="loginPointcut()", returning="isAuthenticated")
 	public void maintainLoginInfo(boolean isAuthenticated){
@@ -60,6 +67,12 @@ public class ActivityAspect {
 				tblActivity.setLastSuccessfullTransaction(new Date());
 				if(joinPoint.getSignature().getName().equals("bookFlight")){
 					tblActivity.setEverBooked(true);
+				}
+				if(tblActivity.getLevelFactor()==thresholdFrequencyForLow && tblActivity.getLoginFrequency()>thresholdFrequencyForLow){
+					tblActivity.setLevelFactor(tblActivity.getLevelFactor()+1);
+				}
+				else if(tblActivity.getLevelFactor()==(thresholdFrequencyForHigh-1) && tblActivity.getLoginFrequency()>=thresholdFrequencyForHigh && tblActivity.hasEverBooked()){
+					tblActivity.setLevelFactor(thresholdFrequencyForHigh);
 				}
 			}
 			activityDao.logActivity(tblActivity);
