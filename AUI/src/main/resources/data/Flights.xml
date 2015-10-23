@@ -3,7 +3,7 @@
 	<flight flightCode="J450">
 		<name>KingFisher</name>
 		<source>Mumbai</source>
-		<destination>Banglore</destination>
+		<destination>Bangalore</destination>
 		<departure>11:30 am</departure>
 		<arrival>1:00 pm</arrival>
 		<duration>1:30</duration>
@@ -12,7 +12,7 @@
 	</flight>
 	<flight flightCode="J451">
 		<name>KingFisher</name>
-		<source>Banglore</source>
+		<source>Bangalore</source>
 		<destination>Mumbai</destination>
 		<departure>1:30 pm</departure>
 		<arrival>3:00 pm</arrival>
@@ -20,11 +20,11 @@
 		<economyfare>2500</economyfare>
 		<businessfare>5000</businessfare>
 	</flight>
-	
+--------------------------------------------------------------------------------------	
 	<flight flightCode="SJ210">
 		<name>Spice Jet</name>
 		<source>Mumbai</source>
-		<destination>Banglore</destination>
+		<destination>Bangalore</destination>
 		<departure>4:30 pm</departure>
 		<arrival>6:00 pm</arrival>
 		<duration>1:30</duration>
@@ -33,7 +33,7 @@
 	</flight>
 	<flight flightCode="SJ211">
 		<name>Spice Jet</name>
-		<source>Banglore</source>
+		<source>Bangalore</source>
 		<destination>Mumbai</destination>
 		<departure>6:30 pm</departure>
 		<arrival>8:00 pm</arrival>
